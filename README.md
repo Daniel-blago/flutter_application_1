@@ -23,7 +23,7 @@ dinámicamente el ícono, el nombre y los datos mostrados.
 - `ElevatedButton` con interacción (`setState`)
 - Colores personalizados con `ColorScheme` y `Color`
 - Paquete externo: [`font_awesome_flutter`](https://pub.dev/packages/font_awesome_flutter)
-- Ícono de app personalizado con [`flutter_launcher_icons`](https://pub.dev/packages/flutter_launcher_icons)
+- Extra: ícono de app personalizado con [`flutter_launcher_icons`](https://pub.dev/packages/flutter_launcher_icons)
 
 ## Paquete externo instalado
 Se instaló el paquete **font_awesome_flutter**, que permite usar íconos de Font Awesome
@@ -52,13 +52,21 @@ flutter run
 
 ## Evidencias
 
+### Instalación y configuración
 | Descripción | Captura |
 |---|---|
-| Creación del proyecto | ![creación del proyecto](./captures/Creacion_captures.png) |
+| Ejecución de `flutter doctor` | ![flutter doctor](./captures/Ejecutando_flutter_doctor.png) |
+| Creación del proyecto en VS Code | ![creación del proyecto](./captures/Creacion_captures.png) |
 | Instalación del paquete font_awesome | ![instalación font awesome](./captures/Instalacion_font_awesome.png) |
 | Paquete font_awesome en pubspec.yaml | ![pubspec con paquete](./captures/Instalacion_font_awesome2.png) |
-| Aplicación funcionando en el emulador | ![app en emulador](./captures/App_telefono.png) |
 | Creación del ícono principal de la app | ![ícono de app](./captures/Creacion_Icono_Principal.png) |
+| Repositorio publicado en GitHub | ![repo en GitHub](./captures/Evidencia_github.png) |
+
+### Funcionamiento de la aplicación
+| Descripción | Captura |
+|---|---|
+| Aplicación funcionando en el emulador | ![app en emulador](./captures/App_telefono.png) |
+| Funcionamiento del botón / interacción | ![botón funcionando](./captures/Evidencia_trabajo.png) |
 
 ## Repositorio
 🔗 [Enlace al repositorio en GitHub](https://github.com/Daniel-blago/flutter_application_1)
