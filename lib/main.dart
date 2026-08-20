@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 58, 183, 75)),
       ),
-      home: const MyHomePage(title: 'Pagina principal'),
+      home: const MyHomePage(title: 'Programación Flutter'),
     );
   }
 }
@@ -55,7 +55,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 1;
-
+  
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Estas son las veces que has presionado el botón:'),
+            const Text('Veces que has presionado el botón:'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
