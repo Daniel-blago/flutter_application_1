@@ -35,12 +35,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // Lista de héroes favoritos de DOTA 2
-  final List<Map<String, dynamic>> heroes = const [
+  final List<Map<String, dynamic>> heroes =  [
     {
       'nombre': 'Pudge',
       'rol': 'Support / Ganker',
       'dificultad': 'Media',
-      'icono': FontAwesomeIcons.hook,
+      'icono': FontAwesomeIcons.skull,
       'color': Color(0xFF6B8E23),
     },
     {
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
+            const FaIcon(
               FontAwesomeIcons.shieldHalved,
               size: 80,
               color: Color(0xFFC23C2A),
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
-                    Icon(
+                    FaIcon(
                       heroeActual['icono'],
                       size: 60,
                       color: heroeActual['color'],
@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 30),
             ElevatedButton.icon(
               onPressed: cambiarHeroe,
-              icon: const Icon(FontAwesomeIcons.dice),
+              icon: const FaIcon(FontAwesomeIcons.dice),
               label: const Text('Cambiar héroe'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFC23C2A),
