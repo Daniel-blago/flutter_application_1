@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HeroModel {
   final String id;
@@ -6,7 +7,7 @@ class HeroModel {
   final String rol;
   final String dificultad;
   final String descripcion;
-  final IconData icono;
+  final FaIconData icono;
   final Color color;
 
   const HeroModel({
