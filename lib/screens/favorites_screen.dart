@@ -1,51 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import '../data/heroes_data.dart';
-import '../services/favorites_service.dart';
+import '../providers/favorites_provider.dart';
 import 'hero_detail_screen.dart';
 
-class FavoritesScreen extends StatefulWidget {
+class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});
 
-  @override
-  State<FavoritesScreen> createState() => _FavoritesScreenState();
-}
-
-class _FavoritesScreenState extends State<FavoritesScreen> {
-  List<String> favoritosIds = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _cargarFavoritos();
-  }
-
-  Future<void> _cargarFavoritos() async {
-    final favoritos = await FavoritesService.obtenerFavoritos();
-    setState(() => favoritosIds = favoritos);
-  }
-
-  Future<void> _confirmarLimpiar() async {
+  Future<void> _confirmarLimpiar(BuildContext context) async {
     final confirmar = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('Vaciar favoritos'),
-        content: const Text('¿Seguro que quieres eliminar todos tus héroes favoritos?'),
+        content: const Text(
+          '¿Seguro que quieres eliminar todos tus héroes favoritos?',
+        ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancelar')),
-          TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Sí, vaciar')),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Sí, vaciar'),
+          ),
         ],
       ),
     );
-    if (confirmar == true) {
-      await FavoritesService.limpiarFavoritos();
-      _cargarFavoritos();
+
+    if (confirmar == true && context.mounted) {
+      context.read<FavoritesProvider>().limpiarFavoritos();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final favoritos = heroesData.where((h) => favoritosIds.contains(h.id)).toList();
+    final favoritosIds = context.watch<FavoritesProvider>().favoritosIds;
+    final favoritos =
+        heroesData.where((h) => favoritosIds.contains(h.id)).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -54,16 +47,20 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFFDAA520),
-        onPressed: _confirmarLimpiar,
+        onPressed: () => _confirmarLimpiar(context),
         child: const Icon(Icons.delete, color: Colors.black),
       ),
       body: favoritos.isEmpty
           ? const Center(
-              child: Text('Aún no tienes favoritos', style: TextStyle(color: Colors.white70)),
+              child: Text(
+                'Aún no tienes favoritos',
+                style: TextStyle(color: Colors.white70),
+              ),
             )
           : GridView.builder(
               padding: const EdgeInsets.all(12),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate:
+                  const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 12,
                 crossAxisSpacing: 12,
@@ -72,28 +69,34 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               itemCount: favoritos.length,
               itemBuilder: (context, index) {
                 final heroe = favoritos[index];
+
                 return GestureDetector(
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => HeroDetailScreen(heroe: heroe)),
-                    );
-                    _cargarFavoritos();
-                  },
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => HeroDetailScreen(heroe: heroe),
+                    ),
+                  ),
                   child: Card(
                     color: const Color(0xFF2A2A2A),
                     child: Padding(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(12),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CircleAvatar(
                             radius: 30,
                             backgroundColor: heroe.color,
-                            child: FaIcon(heroe.icono, color: Colors.white, size: 28),
+                            child: FaIcon(
+                              heroe.icono,
+                              color: Colors.white,
+                            ),
                           ),
                           const SizedBox(height: 10),
-                          Text(heroe.nombre, style: const TextStyle(color: Colors.white)),
+                          Text(
+                            heroe.nombre,
+                            style: const TextStyle(color: Colors.white),
+                          ),
                         ],
                       ),
                     ),
