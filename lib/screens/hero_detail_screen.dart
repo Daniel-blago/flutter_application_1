@@ -21,11 +21,14 @@ class HeroDetailScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(color: heroe.color, shape: BoxShape.circle),
-              child: FaIcon(heroe.icono, size: 70, color: Colors.white),
-            ),
+            Hero(
+  tag: 'hero-icon-${heroe.id}',
+  child: Container(
+    padding: const EdgeInsets.all(24),
+    decoration: BoxDecoration(color: heroe.color, shape: BoxShape.circle),
+    child: FaIcon(heroe.icono, size: 70, color: Colors.white),
+  ),
+),
             const SizedBox(height: 20),
             Text(heroe.nombre,
                 style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white)),

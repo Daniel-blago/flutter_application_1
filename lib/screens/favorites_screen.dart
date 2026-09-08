@@ -84,14 +84,17 @@ class FavoritesScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircleAvatar(
-                            radius: 30,
-                            backgroundColor: heroe.color,
-                            child: FaIcon(
-                              heroe.icono,
-                              color: Colors.white,
-                            ),
-                          ),
+                         Hero(
+  tag: 'hero-icon-${heroe.id}',
+  child: CircleAvatar(
+    radius: 30,
+    backgroundColor: heroe.color,
+    child: FaIcon(
+      heroe.icono,
+      color: Colors.white,
+    ),
+  ),
+),
                           const SizedBox(height: 10),
                           Text(
                             heroe.nombre,

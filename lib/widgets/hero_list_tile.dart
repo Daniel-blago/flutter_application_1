@@ -17,10 +17,13 @@ class HeroListTile extends StatelessWidget {
     return Card(
       color: const Color(0xFF2A2A2A),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: heroe.color,
-          child: FaIcon(heroe.icono, color: Colors.white),
-        ),
+        leading: Hero(
+  tag: 'hero-icon-${heroe.id}',
+  child: CircleAvatar(
+    backgroundColor: heroe.color,
+    child: FaIcon(heroe.icono, color: Colors.white),
+  ),
+),
         title: Text(
           heroe.nombre,
           style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
