@@ -157,6 +157,70 @@ flutter pub add shared_preferences
 | Ícono de la app en el emulador | ![Ícono](./captures/Actividad2_Icono.png) |
 | Estructura de carpetas del proyecto | ![Estructura](./captures/Actividad2_Estructura.png) |
 
+
+
+---
+
+# Actividad Integradora 3: Provider y Widgets Reutilizables 🧩
+
+## Descripción
+Se amplió "DOTA 2 Heroes" incorporando manejo de estado global con Provider, reemplazando la gestión manual de favoritos por un ChangeNotifier compartido entre pantallas, y extrayendo componentes visuales repetidos en widgets reutilizables.
+
+## ¿Continuación o nueva aplicación?
+Se continuó la aplicación de las Actividades Integradoras 1 y 2.
+
+## Estructura de carpetas del proyecto
+
+lib/
+├── main.dart
+├── models/
+│   └── hero_model.dart
+├── data/
+│   └── heroes_data.dart
+├── services/
+│   └── favorites_service.dart
+├── providers/
+│   └── favorites_provider.dart
+├── widgets/
+│   ├── hero_list_tile.dart
+│   └── favorite_icon_button.dart
+└── screens/
+    ├── home_screen.dart
+    ├── heroes_list_screen.dart
+    ├── hero_detail_screen.dart
+    └── favorites_screen.dart
+
+## Provider implementado
+FavoritesProvider (providers/favorites_provider.dart) extiende ChangeNotifier y administra la lista de héroes favoritos. Cada vez que se marca o desmarca un favorito, se llama a notifyListeners(), actualizando automáticamente cualquier pantalla que esté escuchando ese estado mediante context.watch<FavoritesProvider>(). Se conecta a la app mediante ChangeNotifierProvider en main.dart.
+
+Evidencia del funcionamiento: al marcar un héroe como favorito desde el Detalle, aparece automáticamente en Favoritos al navegar hacia ella.
+
+## Widgets reutilizables creados
+- HeroListTile (widgets/hero_list_tile.dart): tarjeta con avatar, nombre y rol de un héroe.
+- FavoriteIconButton (widgets/favorite_icon_button.dart): botón de corazón conectado al Provider, con SnackBar de confirmación.
+
+## Modelo de datos
+HeroModel (models/hero_model.dart) representa a cada héroe: id, nombre, rol, dificultad, descripcion, icono y color.
+
+## Navegación
+Se utiliza Navigator.push() entre Inicio → Lista → Detalle e Inicio → Favoritos, y Navigator.pop() en el AlertDialog.
+
+## Instrucciones para ejecutar el proyecto
+
+git clone <URL_DEL_REPOSITORIO>
+flutter pub get
+flutter run
+
+## Capturas
+
+| Descripción | Captura |
+|---|---|
+| Detalle: héroe marcado como favorito | ![Detalle favorito](./captures/Actividad3_DetalleFavorito.png) |
+| Favoritos actualizado automáticamente | ![Favoritos actualizado](./captures/Actividad3_FavoritosActualizado.png) |
+| Estructura de carpetas y widgets en el código | ![Widgets](./captures/Actividad3_Widgets.png) |
+| pubspec.yaml con Provider instalado | ![Provider pubspec](./captures/Actividad3_ProviderPubspec.png) |
+
+
 ## Instrucciones para ejecutar el proyecto
 
 1. Clonar el repositorio:
