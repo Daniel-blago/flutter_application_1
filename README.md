@@ -161,7 +161,7 @@ flutter pub add shared_preferences
 
 1. Clonar el repositorio:
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone <https://github.com/Daniel-blago/flutter_application_1>
 ```
 2. Instalar dependencias:
 ```bash
